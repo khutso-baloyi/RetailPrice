@@ -8,8 +8,9 @@
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SignIn from './components/SignIn';
-import CreateAccount from './components/CreateAccount';
+import SignIn from './src/pages/SignIn';
+import CreateAccount from './src/pages/CreateAccount';
+import Home from './src/pages/Home';
 
 import React from 'react';
 import {
@@ -25,7 +26,7 @@ import {
 import HomeImg from './assets/images/home.png';
 import { NOT_INITIALIZED_ERROR } from '@react-navigation/core/lib/typescript/src/createNavigationContainerRef';
 
-const Home = ({navigation}) => {
+const Landing = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.background}>
@@ -74,9 +75,10 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Landing" component={Landing} options={{title: 'Welcome'}} />
         <Stack.Screen name="SignIn" component={SignIn} options={{title: 'Sign In'}} />
         <Stack.Screen name="CreateAccount" component={CreateAccount} options={{title: 'Create Account'}} />
+        <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
   );

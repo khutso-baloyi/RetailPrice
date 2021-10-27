@@ -1,13 +1,25 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import ScanIcon from '../../assets/images/scan.png';
 
 const Home = ({navigation}) => {
   
 
   return (
     <View style={styles.root}>
-     
+      <View style={styles.mainView}>
+       <TouchableOpacity style={styles.btn}>
+          <Text style={styles.btnText}>Scan a product</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.scanView} >
+        <TouchableOpacity style={styles.scan}>
+          <Image
+            style={styles.scanImg}
+            source={ScanIcon} />
+        </TouchableOpacity>
+        <Text style={styles.scanText}>Scan</Text>
+        </View>
     </View>
   );
 };
@@ -18,17 +30,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#94ffff',
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
   },
-   rnCamera: {
-    flex: 1,
-    width: '94%',
-    alignSelf: 'center',
+  mainView: {
+    flexGrow: 1
   },
   btn: {
     width: 240,
     borderRadius: 4,
-    backgroundColor: '#62d1bc',
+    backgroundColor: '#FF9494',
     paddingHorizontal: 24,
     paddingVertical: 12,
     marginVertical: 8,
@@ -38,6 +48,29 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     textAlign: 'center',
   },
+  scanView: {
+    padding: 10
+  },
+  scan: {
+    display: 'flex',
+    justifyContent: 'center',
+   padding: 10,
+   backgroundColor: 'white',
+   borderRadius: 50,
+   width: 80,
+   height: 80,
+   shadowOffset:{  width: 10,  height: 10,  },
+   shadowColor: 'black',
+   shadowOpacity: 0.35,
+  },
+  scanImg: {
+    width: 60,
+    height: 40
+  },
+  scanText: {
+    textAlign: 'center',
+    fontSize: 16
+  }
 });
 
 export default Home;

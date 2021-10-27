@@ -11,7 +11,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignIn from './src/pages/SignIn';
 import CreateAccount from './src/pages/CreateAccount';
 import Home from './src/pages/Home';
-
+import Barcode from './src/components/Barcode';
 import React from 'react';
 import {
   SafeAreaView,
@@ -79,6 +79,7 @@ const App = () => {
         <Stack.Screen name="SignIn" component={SignIn} options={{title: 'Sign In'}} />
         <Stack.Screen name="CreateAccount" component={CreateAccount} options={{title: 'Create Account'}} />
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Barcode" component={Barcode} options={{title: 'Scan a product'}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

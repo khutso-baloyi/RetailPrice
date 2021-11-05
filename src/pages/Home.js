@@ -21,17 +21,7 @@ const Home = ({navigation}) => {
        <TouchableOpacity style={styles.btn}>
           <Text style={styles.btnText}>Scan a product</Text>
         </TouchableOpacity>
-        <Modal isVisible={isModalVisible}>
-          <Modal.Container>
-            <Modal.Header title="LogRocket is fab!" />
-            <Modal.Body>
-              <Text style={styles.text}>Agree to continue with this guide</Text>
-              </Modal.Body>
-            <Modal.Footer>
-              <Button title="I agree" onPress={handleModal} />
-            </Modal.Footer>
-          </Modal.Container>
-        </Modal>
+        
       </View>
       <View style={styles.scanView} >
         <TouchableOpacity 

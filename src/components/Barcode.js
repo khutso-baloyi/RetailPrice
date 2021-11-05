@@ -1,28 +1,41 @@
+
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Button, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {RNCamera} from 'react-native-camera';
+import { Modal } from './Modal';
 
 const Barcode = ({navigation}) => {
   const [barcode, setBarcode] = useState(null);
-  
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   const handleBarcode = e => {
     console.log('Barcode: ' + e.data);
     console.log('Type: ' + e.type);
+    setIsModalVisible(true)
   };
+
+  const handleModal = () => {
+    setIsModalVisible(false)
+  }
 
   return (
     <View style={styles.root}>
-      <Text style={{color: 'black'}}>Scan a barcode and view the results</Text>
+      <Text style={{color: 'black'}}>Scan a barcode and view the product results</Text>
       <RNCamera 
       style={styles.rnCamera} 
       onBarCodeRead={handleBarcode}
       />
-
-      <View style={styles.cameraControl}>
-        <TouchableOpacity style={styles.btn}>
-          <Text style={styles.btnText}>New QR Scan</Text>
-        </TouchableOpacity>
-      </View>
+      <Modal isVisible={isModalVisible}>
+          <Modal.Container>
+            <Modal.Header title="Product Results" />
+            <Modal.Body>
+              <Text style={styles.text}>Agree to continue with this guide</Text>
+              </Modal.Body>
+            <Modal.Footer>
+              <Button title="I agree" onPress={handleModal} />
+            </Modal.Footer>
+          </Modal.Container>
+        </Modal>
     </View>
   );
 };
@@ -53,6 +66,9 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     textAlign: 'center',
   },
+  text: {
+    color: 'black'
+  }
 });
 
 export default Barcode;

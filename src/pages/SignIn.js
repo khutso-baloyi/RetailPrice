@@ -1,6 +1,8 @@
 import React from 'react';
 import { Image, View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import { FormProvider, useForm } from 'react-hook-form'
+import axios from 'axios';
+
 import {FormInput} from '../components/FormInput';
 import logo from '../../assets/images/home.png';
 import Home
@@ -9,13 +11,29 @@ const LOGIN_FIELDS = {
     username: 'username',
     password: 'password',
   }
+const URL = 'http://192.168.88.207:4000';
   
 const SignIn = ({navigation}) => {
 
     const formMethods = useForm();
 
     const onSubmit = (form) => {
-        navigation.navigate('Home')
+
+      axios
+      .post(URL + '/auth/login', {
+        username: 'admin', //HARD CODED
+        password: 'admin'
+      })
+      .then(function (response) {
+        // handle success
+        alert(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error)
+        alert(error.message);
+      });
+        // navigation.navigate('Home')
       }
     
       const onErrors = (errors) => {

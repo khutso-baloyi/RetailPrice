@@ -25,6 +25,9 @@ import {
 
 import HomeImg from './assets/images/home.png';
 import { NOT_INITIALIZED_ERROR } from '@react-navigation/core/lib/typescript/src/createNavigationContainerRef';
+import { TokenProvider } from './src/contexts/TokenContext';
+import { StoreProvider } from './src/contexts/StoreContext';
+import StoreProducts from './src/components/StoreProducts';
 
 const Landing = ({navigation}) => {
 
@@ -73,6 +76,8 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   
   return (
+    <TokenProvider>
+    <StoreProvider>
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Landing">
         <Stack.Screen name="Landing" component={Landing} options={{title: 'Welcome'}} />
@@ -80,8 +85,11 @@ const App = () => {
         <Stack.Screen name="CreateAccount" component={CreateAccount} options={{title: 'Create Account'}} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Barcode" component={Barcode} options={{title: 'Scan a product'}} />
+        <Stack.Screen name="Products" component={StoreProducts} options={{title: 'Store Products'}} />
       </Stack.Navigator>
     </NavigationContainer>
+    </StoreProvider>
+    </TokenProvider>
   );
 };
 

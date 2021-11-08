@@ -1,32 +1,40 @@
 import React from 'react';
 import { Image, View, Text, StyleSheet, TextInput, Button } from 'react-native';
-import { FormProvider, useForm } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form';
+import { useToken } from '../contexts/TokenContext';
 import axios from 'axios';
 
 import {FormInput} from '../components/FormInput';
 import logo from '../../assets/images/home.png';
-import Home
- from './Home';
+import Home from './Home';
+
 const LOGIN_FIELDS = {
     username: 'username',
     password: 'password',
   }
 const URL = 'http://192.168.88.207:4000';
   
+
+
 const SignIn = ({navigation}) => {
+
+    const [token, setToken] = useToken();
 
     const formMethods = useForm();
 
     const onSubmit = (form) => {
 
+      console.log(form)
+
       axios
       .post(URL + '/auth/login', {
-        username: 'admin', //HARD CODED
-        password: 'admin'
+        username: form.username, //HARD CODED
+        password: form.password
       })
       .then(function (response) {
         // handle success
-        alert(JSON.stringify(response.data));
+        setToken(response.data);
+        navigation.navigate('Home');
       })
       .catch(function (error) {
         // handle error

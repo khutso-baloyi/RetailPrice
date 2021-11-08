@@ -1,11 +1,32 @@
-import React, {useState} from 'react';
+import axios from 'axios';
+import React, {useEffect, useState} from 'react';
 import {Button, View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import ScanIcon from '../../assets/images/scan.png';
 import { Modal } from '../components/Modal';
+import { useToken } from '../contexts/TokenContext';
+import { useStore, useActiveStore } from '../contexts/StoreContext';
+import { Stores } from '../variables/constants';
+
 
 const Home = ({navigation}) => {
   
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [token, setToken] = useToken();
+  const [store, setStore] = useStore();
+  const [activeStore, setActiveStore] = useActiveStore();
+
+  useEffect(() => {
+    
+    axios.get('http://192.168.88.207:4000/stores/userstores', { headers: {'Authorization': `Bearer ${token.accessToken}`}})
+    .then((response) => {
+      console.log(response.data);
+      setStore(response.data) //returns an array
+      setActiveStore(response.data[0]); //this will need to be in the dropdown function
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+  }, [])
 
   const handleModal = () => {
     setIsModalVisible(!isModalVisible)
@@ -15,13 +36,23 @@ const Home = ({navigation}) => {
   const handleBarcode  = () => {
     navigation.navigate('Barcode')
   }
+  
+  const handleProduct = () => {
+    navigation.navigate('Products')
+  }
   return (
     <View style={styles.root}>
       <View style={styles.mainView}>
-       <TouchableOpacity style={styles.btn}>
-          <Text style={styles.btnText}>Scan a product</Text>
-        </TouchableOpacity>
+      {store && <Text>
+        Current Store: {Stores[store[0].store_id].store_name}
+      </Text>}
         
+      </View>
+      <View>
+        <TouchableOpacity
+          onPress={handleProduct}>
+            <Text>Store Products</Text>
+          </TouchableOpacity>
       </View>
       <View style={styles.scanView} >
         <TouchableOpacity 

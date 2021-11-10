@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
       heading: {
       },
       headingText: {
+        color: 'grey',
         fontSize: 20,
         fontFamily: 'Helvetica-Bold'
       },

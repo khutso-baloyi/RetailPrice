@@ -28,6 +28,7 @@ import { NOT_INITIALIZED_ERROR } from '@react-navigation/core/lib/typescript/src
 import { TokenProvider } from './src/contexts/TokenContext';
 import { StoreProvider } from './src/contexts/StoreContext';
 import StoreProducts from './src/components/StoreProducts';
+import AddProduct from './src/pages/AddProduct';
 
 const Landing = ({navigation}) => {
 
@@ -84,8 +85,9 @@ const App = () => {
         <Stack.Screen name="SignIn" component={SignIn} options={{title: 'Sign In'}} />
         <Stack.Screen name="CreateAccount" component={CreateAccount} options={{title: 'Create Account'}} />
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Barcode" component={Barcode} options={{title: 'Scan a product'}} />
+        <Stack.Screen name="Barcode" component={Barcode} options={{title: 'Scan a Product'}} />
         <Stack.Screen name="Products" component={StoreProducts} options={{title: 'Store Products'}} />
+        <Stack.Screen name="AddProduct" component={AddProduct} options={{title: 'Add a Product'}} />
       </Stack.Navigator>
     </NavigationContainer>
     </StoreProvider>
@@ -106,6 +108,7 @@ const styles = StyleSheet.create({
     
   },
   subMsg: {
+    color: 'black',
     textAlign: 'center',
     fontSize: 16,
     fontFamily: 'Nunito-Italic'

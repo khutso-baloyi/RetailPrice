@@ -4,11 +4,11 @@ import React from "react"
 
 export const Input = ({ label, error, ...textInputProps }) => {
     const isError = Boolean(error)
-  
+    
     console.log("isError: ", isError)
     return (
       <View>
-        {Boolean(label) && <Text>{label}</Text>}
+        {Boolean(label) && <Text style={{color: 'grey'}}>{label}</Text>}
         {!isError && <TextInput style={styles.normalInput}
                         placeholder={label} {...textInputProps} />}
         {isError && <><TextInput style={styles.errorInput} {...textInputProps} />
@@ -33,6 +33,7 @@ export const Input = ({ label, error, ...textInputProps }) => {
       },
       normalInput: {
         
+        color: 'black',
         backgroundColor: '#fff',
         borderRadius: 10,
         height: 42,

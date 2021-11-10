@@ -40,7 +40,8 @@ const StoreProducts = () => {
     }
 
     useEffect(() => {
-        axios.get('http://192.168.88.207:4000/products/storeproducts/1', 
+
+        axios.get('http://192.168.88.207:4000/products/storeproducts/' + activeStore, 
         { 
             headers: {
                 'Authorization': `Bearer ${token.accessToken}`,

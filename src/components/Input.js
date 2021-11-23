@@ -23,6 +23,7 @@ export const Input = ({ label, error, ...textInputProps }) => {
           color: 'red'
       },
       errorInput: {
+        color: 'black',
         borderWidth: 1,
         borderColor: 'red',
         backgroundColor: '#fff',

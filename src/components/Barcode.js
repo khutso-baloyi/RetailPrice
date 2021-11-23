@@ -65,6 +65,7 @@ const Barcode = ({navigation}) => {
       <Text style={{color: 'black'}}>Scan a barcode and view the product results</Text>
       <RNCamera 
       style={styles.rnCamera} 
+      flashMode='on'
       onBarCodeRead={handleBarcode}
       />
       <Modal isVisible={isModalVisibleNoProduct}>

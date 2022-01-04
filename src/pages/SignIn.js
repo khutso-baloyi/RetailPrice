@@ -60,7 +60,7 @@ const SignIn = ({navigation}) => {
                 <FormInput 
                     name={LOGIN_FIELDS.username} 
                     label='Username' 
-                    rules={{ required: 'Username is required!' }}
+                    rules={{ required: 'Username is very required!' }}
                     />
                 <FormInput 
                     name={LOGIN_FIELDS.password} 

@@ -78,7 +78,7 @@ const Home = ({navigation}) => {
         <View style={styles.speechText}>
         <Text style={styles.insideText}>The button above allows you to view products {"\n"} in each store 
         </Text>
-        <Text style={styles.insideText}>The button below allows you to scan a product's barcode</Text>
+        <Text style={styles.insideText}>The button below allows you to scan a {"\n"} product's barcode</Text>
         </View>
       </ImageBackground>
       <View style={styles.scanView} >

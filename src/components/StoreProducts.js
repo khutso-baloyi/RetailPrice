@@ -4,7 +4,7 @@ import {Button, View, ScrollView, Text, StyleSheet, TouchableOpacity, Image} fro
 import { useActiveStore } from '../contexts/StoreContext';
 import { useToken } from '../contexts/TokenContext';
 import _ from 'lodash';
-import { URL } from '../variables/constants';
+import { URL, Stores } from '../variables/constants';
 
 const StoreProducts = () => {
 
@@ -42,7 +42,7 @@ const StoreProducts = () => {
     }
 
     useEffect(() => {
-
+        console.log(activeStore)
         axios.get(URL + '/products/storeproducts/' + activeStore, 
         { 
             headers: {
@@ -65,6 +65,9 @@ const StoreProducts = () => {
 
     return (
     <View style={styles.root}>
+        <View style={styles.headingView}> 
+            <Text style={styles.headingText}>PRODUCTS IN {Stores[1].store_name.toUpperCase()}</Text>
+        </View>
         <ScrollView style={styles.table}>
             <View style={styles.row} >
                {tableHead.map((head, i) => <Text style={styles.head} key={i}>{head}</Text>)}
@@ -120,8 +123,27 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         
     },
-    head: {  color: 'black', width: 85,  padding: 5, fontWeight: 'bold'  },
-    text: {  color: 'black', width: 85,  padding: 5 }
+    head: {  
+        color: 'black', 
+        width: 85,  
+        padding: 5, 
+        fontWeight: 'bold',
+        fontFamily: 'Nunito-Black'  
+    },
+    text: {  
+        color: 'black', 
+        width: 85,  
+        padding: 5 
+    },
+    headingText: {
+        textAlign: 'center',
+        fontSize: 16,
+        color: '#FF9494',
+        fontFamily: 'Nunito-Black'
+    },
+    headingView: {
+        padding: 20
+    }
   });
   
   export default StoreProducts;

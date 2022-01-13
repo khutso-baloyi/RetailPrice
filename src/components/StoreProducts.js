@@ -67,7 +67,7 @@ const StoreProducts = () => {
     <View style={styles.root}>
         <ScrollView style={styles.table}>
             <View style={styles.row} >
-               {tableHead.map((head) => <Text style={styles.head}>{head}</Text>)}
+               {tableHead.map((head, i) => <Text style={styles.head} key={i}>{head}</Text>)}
             </View>
             {products && products.map((product, index) => {
                 if(index % 2) {

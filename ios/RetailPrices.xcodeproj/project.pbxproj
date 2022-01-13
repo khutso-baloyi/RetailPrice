@@ -33,6 +33,10 @@
 		D55EFE9B8FB343639D2F9B10 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 654CA45D48644627B001D27B /* Nunito-Regular.ttf */; };
 		97E2D0488F53490F90C821F1 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 233C3ED722F641BEBC8DFD20 /* Nunito-SemiBold.ttf */; };
 		552732C179B8471F955F971A /* Nunito-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6BB44E6C081460B8504E2C9 /* Nunito-SemiBoldItalic.ttf */; };
+		BDDCC91CFB024DF0AF65E75B /* Qdbettercomicsans-jEEeG.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03276860276A4E8B82F1C81A /* Qdbettercomicsans-jEEeG.ttf */; };
+		8AA8C0A4FDEA4DEEB61B3509 /* Qdbettercomicsansalternates-z8823.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F69236913FED4E2D89E3436F /* Qdbettercomicsansalternates-z8823.ttf */; };
+		FD3030A19F284AB7921A301A /* Qdbettercomicsansbold-511d8.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F540343002CA4A9EB0D45399 /* Qdbettercomicsansbold-511d8.ttf */; };
+		53363DA42AF446DDA0A9D687 /* Qdbettercomicsansboldalternates-6YYPY.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 65655DAD83204B34B8CE925A /* Qdbettercomicsansboldalternates-6YYPY.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +82,10 @@
 		654CA45D48644627B001D27B /* Nunito-Regular.ttf */ = {isa = PBXFileReference; name = "Nunito-Regular.ttf"; path = "../assets/fonts/Nunito-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		233C3ED722F641BEBC8DFD20 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; name = "Nunito-SemiBold.ttf"; path = "../assets/fonts/Nunito-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		E6BB44E6C081460B8504E2C9 /* Nunito-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "Nunito-SemiBoldItalic.ttf"; path = "../assets/fonts/Nunito-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		03276860276A4E8B82F1C81A /* Qdbettercomicsans-jEEeG.ttf */ = {isa = PBXFileReference; name = "Qdbettercomicsans-jEEeG.ttf"; path = "../assets/fonts/Qdbettercomicsans-jEEeG.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F69236913FED4E2D89E3436F /* Qdbettercomicsansalternates-z8823.ttf */ = {isa = PBXFileReference; name = "Qdbettercomicsansalternates-z8823.ttf"; path = "../assets/fonts/Qdbettercomicsansalternates-z8823.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F540343002CA4A9EB0D45399 /* Qdbettercomicsansbold-511d8.ttf */ = {isa = PBXFileReference; name = "Qdbettercomicsansbold-511d8.ttf"; path = "../assets/fonts/Qdbettercomicsansbold-511d8.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		65655DAD83204B34B8CE925A /* Qdbettercomicsansboldalternates-6YYPY.ttf */ = {isa = PBXFileReference; name = "Qdbettercomicsansboldalternates-6YYPY.ttf"; path = "../assets/fonts/Qdbettercomicsansboldalternates-6YYPY.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +199,10 @@
 				654CA45D48644627B001D27B /* Nunito-Regular.ttf */,
 				233C3ED722F641BEBC8DFD20 /* Nunito-SemiBold.ttf */,
 				E6BB44E6C081460B8504E2C9 /* Nunito-SemiBoldItalic.ttf */,
+				03276860276A4E8B82F1C81A /* Qdbettercomicsans-jEEeG.ttf */,
+				F69236913FED4E2D89E3436F /* Qdbettercomicsansalternates-z8823.ttf */,
+				F540343002CA4A9EB0D45399 /* Qdbettercomicsansbold-511d8.ttf */,
+				65655DAD83204B34B8CE925A /* Qdbettercomicsansboldalternates-6YYPY.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -307,6 +319,10 @@
 				D55EFE9B8FB343639D2F9B10 /* Nunito-Regular.ttf in Resources */,
 				97E2D0488F53490F90C821F1 /* Nunito-SemiBold.ttf in Resources */,
 				552732C179B8471F955F971A /* Nunito-SemiBoldItalic.ttf in Resources */,
+				BDDCC91CFB024DF0AF65E75B /* Qdbettercomicsans-jEEeG.ttf in Resources */,
+				8AA8C0A4FDEA4DEEB61B3509 /* Qdbettercomicsansalternates-z8823.ttf in Resources */,
+				FD3030A19F284AB7921A301A /* Qdbettercomicsansbold-511d8.ttf in Resources */,
+				53363DA42AF446DDA0A9D687 /* Qdbettercomicsansboldalternates-6YYPY.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

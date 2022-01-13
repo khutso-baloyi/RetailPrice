@@ -5,7 +5,7 @@ import {FormInput} from '../components/FormInput';
 import { useActiveStore } from '../contexts/StoreContext';
 import { useToken } from '../contexts/TokenContext';
 import axios from 'axios';
-
+import { URL } from '../variables/constants';
 
 const AddProduct = ({navigation, route}) => {
     const formMethods = useForm();
@@ -26,7 +26,7 @@ const AddProduct = ({navigation, route}) => {
         }
 
         console.log("the body", body)
-        axios.post('http://192.168.88.207:4000/products/addproduct', body,{ headers: {'Authorization': `Bearer ${token.accessToken}`}} )
+        axios.post(URL + '/products/addproduct', body,{ headers: {'Authorization': `Bearer ${token.accessToken}`}} )
         .then((response) => {
             console.log(response.data)
             navigation.navigate('Home')

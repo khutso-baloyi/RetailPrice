@@ -1,13 +1,13 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import {Button, View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {ImageBackground, View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import ScanIcon from '../../assets/images/scan.png';
 import { Modal } from '../components/Modal';
 import { useToken } from '../contexts/TokenContext';
 import { useStore, useActiveStore } from '../contexts/StoreContext';
-import { Stores } from '../variables/constants';
-import ArrowIcon from '../../assets/images/caret-down-solid.png';
+import { Stores, URL } from '../variables/constants';
+import SpeechBubble from '../../assets/images/speech_bubble.png';
 import _ from 'lodash';
 
 
@@ -21,9 +21,9 @@ const Home = ({navigation}) => {
 
   useEffect(() => {
     
-    axios.get('http://192.168.88.207:4000/stores/userstores', { headers: {'Authorization': `Bearer ${token.accessToken}`}})
+    axios.get(URL + '/stores/userstores', { headers: {'Authorization': `Bearer ${token.accessToken}`}})
     .then((response) => {
-      console.log(response.data);
+      console.log("yes ",response.data);
       setStore(response.data) //returns an array
       response.data.map((store) => {if(store.is_primary_store) setActiveStore(store.store_id)})
     })
@@ -32,9 +32,6 @@ const Home = ({navigation}) => {
     })
   }, [])
 
-  useEffect(() => {
-    console.log("active store", activeStore)
-  }, [activeStore, setActiveStore])
 
   const handleModal = () => {
     setIsModalVisible(!isModalVisible)
@@ -56,17 +53,14 @@ const Home = ({navigation}) => {
         <Text style={styles.currentStore}>
         Current Store: 
         </Text>
-         {/* <Text style={styles.currentStore}> {Stores[store[0].store_id].store_name}</Text>
-         <Image style={styles.arrowImg} source={ArrowIcon} /> */}
-
+         
       <Picker
         selectedValue={activeStore}
         style={styles.dropdown}
         onValueChange={(itemValue, itemIndex) => setActiveStore(itemValue)}
       >
         {_.map(Stores, (store, storeIndex) => <Picker.Item label={store.store_name} value={storeIndex} key={storeIndex}/> )}
-        {/* <Picker.Item label={Stores[store[0].store_id].store_name} value="java" />
-        <Picker.Item label={Stores[store[0].store_id].store_name} value="js" /> */}
+
       </Picker>
           
       </>}
@@ -79,6 +73,14 @@ const Home = ({navigation}) => {
           </TouchableOpacity>
       </View>
       
+
+      <ImageBackground source={SpeechBubble}>
+        <View style={styles.speechText}>
+        <Text style={styles.insideText}>The button above allows you to view products {"\n"} in each store 
+        </Text>
+        <Text style={styles.insideText}>The button below allows you to scan a product's barcode</Text>
+        </View>
+      </ImageBackground>
       <View style={styles.scanView} >
         <TouchableOpacity 
           style={styles.scan}
@@ -110,6 +112,7 @@ const styles = StyleSheet.create({
   },
   currentStore: {
     fontSize: 18,
+    color: 'black',
     fontFamily: 'Nunito-Black'
   },
   dropdownMain: {
@@ -168,7 +171,29 @@ const styles = StyleSheet.create({
   scanText: {
     textAlign: 'center',
     fontSize: 16,
+    color: 'black',
     fontFamily: 'Nunito-Black'
+  },
+  speech: {
+    display: 'block',
+    width: 150,
+    height: 150
+
+  },
+  speechText: {
+    display: 'flex',
+    alignItems: 'center',
+    paddingTop: 50,
+    height: 270,
+    width: 350,
+    padding: 10,
+    paddingRight: 24
+  },
+  insideText: {
+    textAlign: 'center',
+    fontSize: 13,
+    color: 'black',
+    fontFamily: 'Qdbettercomicsans-jEEeG'
   }
 });
 

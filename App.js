@@ -29,6 +29,8 @@ import { TokenProvider } from './src/contexts/TokenContext';
 import { StoreProvider } from './src/contexts/StoreContext';
 import StoreProducts from './src/components/StoreProducts';
 import AddProduct from './src/pages/AddProduct';
+import UpdateProduct from './src/pages/UpdateProduct';
+import { Profile } from './src/pages/Profile';
 
 const Landing = ({navigation}) => {
 
@@ -88,6 +90,8 @@ const App = () => {
         <Stack.Screen name="Barcode" component={Barcode} options={{title: 'Scan a Product'}} />
         <Stack.Screen name="Products" component={StoreProducts} options={{title: 'Store Products'}} />
         <Stack.Screen name="AddProduct" component={AddProduct} options={{title: 'Add a Product'}} />
+        <Stack.Screen name="UpdateProduct" component={UpdateProduct} options={{title: 'Update Product Price'}} />
+        <Stack.Screen name="Profile" component={Profile} options={{title: 'User Profile'}} />
       </Stack.Navigator>
     </NavigationContainer>
     </StoreProvider>

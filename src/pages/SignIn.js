@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Image, View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useToken } from '../contexts/TokenContext';
 import axios from 'axios';
-
+import { URL } from '../variables/constants';
 import {FormInput} from '../components/FormInput';
 import logo from '../../assets/images/home.png';
 import Home from './Home';
@@ -12,13 +12,11 @@ const LOGIN_FIELDS = {
     username: 'username',
     password: 'password',
   }
-const URL = 'http://192.168.88.207:4000';
-  
-
 
 const SignIn = ({navigation}) => {
 
     const [token, setToken] = useToken();
+    const [wrongCredentials, setWrongCredentials] = useState(false)
 
     const formMethods = useForm();
 
@@ -34,18 +32,18 @@ const SignIn = ({navigation}) => {
       .then(function (response) {
         // handle success
         setToken(response.data);
-        navigation.navigate('Home');
+        navigation.replace('Home');
       })
       .catch(function (error) {
         // handle error
         console.log(error)
-        alert(error.message);
+        setWrongCredentials(true)
       });
         // navigation.navigate('Home')
       }
     
       const onErrors = (errors) => {
-        console.warn(errors)
+        console.log(errors)
       }
 
     return(
@@ -54,6 +52,7 @@ const SignIn = ({navigation}) => {
             <View style={styles.heading}>
                 <Text style={styles.headingText}>Sign In</Text>
             </View>
+            {wrongCredentials && <Text style={styles.wrongCredentials}>Your password and or username is incorrect</Text>}
             <View style={styles.form}>
                 <FormProvider {...formMethods}>
                 
@@ -64,6 +63,7 @@ const SignIn = ({navigation}) => {
                     />
                 <FormInput 
                     name={LOGIN_FIELDS.password} 
+                    secureTextEntry={true}
                     label='Password' 
                     rules={{
                         required: 'Password is required!',
@@ -94,6 +94,11 @@ const styles = StyleSheet.create({
       headingText: {
         color: 'grey',
         fontSize: 20,
+        fontFamily: 'Helvetica-Bold'
+      },
+      wrongCredentials: {
+        color: 'red',
+        fontSize: 14,
         fontFamily: 'Helvetica-Bold'
       },
       form: {

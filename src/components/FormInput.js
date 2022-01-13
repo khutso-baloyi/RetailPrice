@@ -5,7 +5,7 @@ import { useController, useFormContext } from 'react-hook-form'
 import { Input } from './Input'
 
 export const FormInput = (props) => {
-  const { name, rules, defaultValue = '', ...inputProps } = props;
+  const { name, rules, defaultValue='', ...inputProps } = props;
  
 
   const formContext = useFormContext()

@@ -5,6 +5,7 @@ import {RNCamera} from 'react-native-camera';
 import { Modal } from './Modal';
 import axios from 'axios';
 import { useToken } from '../contexts/TokenContext';
+import { URL } from '../variables/constants';
 
 const Barcode = ({navigation}) => {
   const [token, setToken] = useToken();
@@ -17,7 +18,7 @@ const Barcode = ({navigation}) => {
     if(barcode != e.data) {
       if(e.type == 'EAN_13') {
         setBarcode(e.data);
-        axios.get('http://192.168.88.207:4000/products/findproduct/' + e.data, { headers: {'Authorization': `Bearer ${token.accessToken}`}} )
+        axios.get(URL + '/products/findproduct/' + e.data, { headers: {'Authorization': `Bearer ${token.accessToken}`}} )
         .then((response) => {
           console.log("the response",response.data)
           if(!response.data) {
@@ -50,6 +51,10 @@ const Barcode = ({navigation}) => {
 
   const updateProduct = () => {
     setIsModalVisibleProduct(false);
+
+    navigation.navigate('UpdateProduct', {
+      barcode: barcode
+    })
     
   }
 
@@ -75,8 +80,14 @@ const Barcode = ({navigation}) => {
               <Text style={styles.text}>This product does not exist, want to add it?</Text>
               </Modal.Body>
             <Modal.Footer>
-              <Button title="Add Product" onPress={addProduct} />
-              <Button title="Cancel" onPress={cancel} />
+
+            <TouchableOpacity style={styles.cancelBtn} onPress={cancel}>
+              <Text style={styles.cancelText}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.confirmBtn}  onPress={addProduct}>
+                <Text style={styles.confirmText}>Add Product</Text>
+                </TouchableOpacity>
+              
             </Modal.Footer>
           </Modal.Container>
         </Modal>
@@ -87,8 +98,14 @@ const Barcode = ({navigation}) => {
             <Text style={styles.text}>This product exist, update price?</Text>
           </Modal.Body>
           <Modal.Footer>
-            <Button title="Update Price" onPress={updateProduct} />
-            <Button title="Cancel" onPress={cancel} />
+
+          <TouchableOpacity style={styles.cancelBtn} onPress={cancel}>
+              <Text style={styles.cancelText}>Cancel</Text>
+              </TouchableOpacity>
+            <TouchableOpacity style={styles.confirmBtn} onPress={updateProduct}>
+              <Text style={styles.confirmText}>Update Price</Text>
+            </TouchableOpacity>
+            
           </Modal.Footer>
         </Modal.Container>
       </Modal>
@@ -122,10 +139,33 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     textAlign: 'center',
   },
+  confirmText: {
+    color: 'white',
+    fontFamily: 'Nunito-Black'
+  },
+  cancelText: {
+    color: 'blue',
+    fontFamily: 'Nunito-Black'
+  },
   text: {
     color: 'black',
     fontFamily: 'Nunito-Black'
+  },
+  confirmBtn: {
+    margin: 15,
+    padding: 10,
+    borderRadius: 5,
+    backgroundColor: 'blue',
+    
+  },
+  cancelBtn: {
+    margin: 15,
+    padding: 10,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: 'blue'
   }
+
 });
 
 export default Barcode;

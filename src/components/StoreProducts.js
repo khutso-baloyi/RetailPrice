@@ -1,26 +1,26 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import {Button, View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {Button, View, ScrollView, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import { useActiveStore } from '../contexts/StoreContext';
 import { useToken } from '../contexts/TokenContext';
-
-
+import _ from 'lodash';
+import { URL } from '../variables/constants';
 
 const StoreProducts = () => {
 
     const [activeStore, setActiveStore] = useActiveStore();
     const [token, setToken] = useToken();
-    const [products, setProducts] = useState([
-       
-    ]);
+    const [products, setProducts] = useState([]);
+    const [productDisplay, setProductDisplay] = useState([])
+    const tableHead = ['Name', 'Description', 'Price', 'Previous Price'];
 
     const getProducts = (store_products) => {
         console.log("no", store_products)
-        axios.all([
-            axios.get('http://192.168.88.207:4000/products/findproduct/' + store_products[0].barcode, { headers: {'Authorization': `Bearer ${token.accessToken}`}})
-        ])
+
+        axios.all(store_products.map((product) => axios.get(URL + '/products/findproduct/' + product.barcode, { headers: {'Authorization': `Bearer ${token.accessToken}`}})))
         .then(axios.spread((...responses) => {
-            console.log(responses[0].data)
+            responses.map((res) => console.log("the res", res.data ))
+
             store_products.map((prod) => {
                 responses.map((res) => {
                     
@@ -37,11 +37,13 @@ const StoreProducts = () => {
                 })
             })
         }))
+        .catch((error) => console.log(error))
+    
     }
 
     useEffect(() => {
 
-        axios.get('http://192.168.88.207:4000/products/storeproducts/' + activeStore, 
+        axios.get(URL + '/products/storeproducts/' + activeStore, 
         { 
             headers: {
                 'Authorization': `Bearer ${token.accessToken}`,
@@ -61,10 +63,26 @@ const StoreProducts = () => {
 
    
 
-    return (<View style={styles.root}>
-        {products && products.map((product, barcode) => {
-            return <Text key={barcode}>{product.name}</Text>
-        })}
+    return (
+    <View style={styles.root}>
+        <ScrollView style={styles.table}>
+            <View style={styles.row} >
+               {tableHead.map((head) => <Text style={styles.head}>{head}</Text>)}
+            </View>
+            {products && products.map((product, index) => {
+                if(index % 2) {
+                    return (<TouchableOpacity style={styles.oddRow} key={index} >
+                        {_.map((_.filter(product, (value, index) => {return (index != 'barcode' && index != 'img_url')})), (prod, index) => <Text style={styles.text} key={index}>{prod}</Text>)}
+                     </TouchableOpacity>)
+                } else {
+                    return (<TouchableOpacity style={styles.evenRow} key={index}>
+                        {_.map((_.filter(product, (value, index) => {return (index != 'barcode' && index != 'img_url')})), (prod, index) => <Text style={styles.text} key={index}>{prod}</Text>)}
+                     </TouchableOpacity>)
+                }
+               
+            })}
+        </ScrollView>
+
     </View>);
 }
 
@@ -72,12 +90,38 @@ const styles = StyleSheet.create({
     root: {
       backgroundColor: '#94ffff',
       flex: 1,
+      color: 'black',
       alignItems: 'center',
-      justifyContent: 'flex-end',
+      justifyContent: 'flex-start',
     },
     mainView: {
       flexGrow: 1
-    }
+    },
+    table: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    row: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: 'rgba(50, 50, 50, 0.17)'
+    },
+    oddRow: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: 'rgba(50, 50, 50, 0.17)',
+        
+    },
+    evenRow: {
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'row',
+        
+    },
+    head: {  color: 'black', width: 85,  padding: 5, fontWeight: 'bold'  },
+    text: {  color: 'black', width: 85,  padding: 5 }
   });
   
   export default StoreProducts;

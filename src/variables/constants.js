@@ -10,3 +10,5 @@ export const Stores = {
         store_name: "checkers"
     }
 }
+
+export const URL = 'http://ec2-44-200-130-178.compute-1.amazonaws.com:8888';

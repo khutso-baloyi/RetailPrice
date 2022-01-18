@@ -1,4 +1,9 @@
 
+# Retail Prices
+
+## Description
+Retail Prices is a mobile application that allows retail shoppers to compare last months' prices of products with the current months' prices. This can help shoppers make informed decision as to whether they are losing money when purchasing a product or they are saving.
+
 # Functionality
 The app should allow the customer to scan a product:
 - if a product does not exist, query the customer to add the product or 'cancel'

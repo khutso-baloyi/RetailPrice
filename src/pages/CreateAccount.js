@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import { Image, View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useToken } from '../contexts/TokenContext';
@@ -21,6 +21,7 @@ const CreateAccount = ({navigation}) => {
 
     const [token, setToken] = useToken();
     const [activeStore, setActiveStore] = useActiveStore();
+    const [usernameExist, setUsernameExist] = useState(false);
     const formMethods = useForm();
     const password = useRef({})
     password.current = formMethods.watch("password", '')
@@ -35,14 +36,19 @@ const CreateAccount = ({navigation}) => {
 
       axios
       .post(URL + '/users/user', {
-        store_id: activeStore,
+        store_id: activeStore || '1',
         username: form.username, 
         password: form.password
       })
       .then(function (response) {
         // handle success
         setToken(response.data);
+        console.log(response.data)
+        if(response.data.error == "user already exists") {
+          setUsernameExist(true);
+        } else {
         navigation.navigate('Home');
+        }
       })
       .catch(function (error) {
         // handle error
@@ -62,6 +68,7 @@ const CreateAccount = ({navigation}) => {
             <View style={styles.heading}>
                 <Text style={styles.headingText}>Create an Account</Text>
             </View>
+            {usernameExist && <Text style={styles.wrongCredentials}>Username Already Exists!</Text>}
             <View style={styles.form}>
 
             <View style={styles.dropdownMain}>
@@ -153,6 +160,11 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         paddingTop: 15
       },
+      wrongCredentials: {
+        color: 'red',
+        fontSize: 14,
+        fontFamily: 'Helvetica-Bold'
+      }
 })
 
 export default CreateAccount;

@@ -23,10 +23,11 @@ const SignIn = ({navigation}) => {
     const onSubmit = (form) => {
 
       console.log(form)
+      console.log(URL)
 
       axios
       .post(URL + '/auth/login', {
-        username: form.username, //HARD CODED
+        username: form.username, 
         password: form.password
       })
       .then(function (response) {
@@ -36,7 +37,7 @@ const SignIn = ({navigation}) => {
       })
       .catch(function (error) {
         // handle error
-        console.log(error)
+        console.error(error)
         setWrongCredentials(true)
       });
         // navigation.navigate('Home')

@@ -11,4 +11,4 @@ export const Stores = {
     }
 }
 
-export const URL = 'http://ec2-44-200-130-178.compute-1.amazonaws.com:8888';
+export const URL = 'http://192.168.88.207:4000';
